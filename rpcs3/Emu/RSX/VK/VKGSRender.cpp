@@ -187,8 +187,8 @@ namespace vk
 		case rsx::blend_equation::reverse_substract: return VK_BLEND_OP_REVERSE_SUBTRACT;
 		case rsx::blend_equation::min: return VK_BLEND_OP_MIN;
 		case rsx::blend_equation::max: return VK_BLEND_OP_MAX;
-		//default:
-		//	fmt::throw_exception("Unknown blend op: 0x%x" HERE, static_cast<u32>(op));
+		/*default:
+			fmt::throw_exception("Unknown blend op: 0x%x" HERE, static_cast<u32>(op)); */
 		}
 	}
 
