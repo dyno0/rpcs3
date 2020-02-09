@@ -112,7 +112,8 @@ namespace rsx
 
 	u32 get_vertex_type_size_on_host(vertex_base_type type, u32 size);
 
-	u32 get_address(u32 offset, u32 location);
+	// TODO: Replace with std::source_location in c++20
+	u32 get_address(u32 offset, u32 location, const char* from);
 
 	struct tiled_region
 	{
@@ -196,7 +197,7 @@ namespace rsx
 
 			for (const auto &attrib : locations)
 			{
-				if (LIKELY(attrib.frequency <= 1))
+				if (attrib.frequency <= 1) [[likely]]
 				{
 					_max_index = max_index;
 				}
@@ -538,7 +539,7 @@ namespace rsx
 			while (!buffer_queue.empty());
 
 			// Need to observe this happening in the wild
-			LOG_ERROR(RSX, "Display queue was discarded while not empty!");
+			rsx_log.error("Display queue was discarded while not empty!");
 			return false;
 		}
 	};
